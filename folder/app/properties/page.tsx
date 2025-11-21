@@ -1,18 +1,33 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Property } from '@/lib/data-loader';
-import { getProperties, getLocations } from '@/lib/data-loader';
+import { Property, getProperties } from '@/lib/data-loader';
 import PropertyCard from '@/components/PropertyCard';
-import { FiFilter, FiX, FiChevronDown } from 'react-icons/fi';
+import { FiFilter, FiX } from 'react-icons/fi';
 
 export default function PropertiesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-4 border-primary-600 border-t-transparent mx-auto mb-4" />
+            <p className="text-gray-600 text-lg">Loading properties...</p>
+          </div>
+        </div>
+      }
+    >
+      <PropertiesPageContent />
+    </Suspense>
+  );
+}
+
+function PropertiesPageContent() {
   const searchParams = useSearchParams();
   const [properties, setProperties] = useState<Property[]>([]);
   const [filteredProperties, setFilteredProperties] = useState<Property[]>([]);
   const [showFilters, setShowFilters] = useState(false);
-  const [locations, setLocations] = useState<any>(null);
 
   // Filter states
   const [selectedLocation, setSelectedLocation] = useState('');
@@ -26,7 +41,6 @@ export default function PropertiesPage() {
   useEffect(() => {
     const allProperties = getProperties();
     setProperties(allProperties);
-    setLocations(getLocations());
 
     // Handle search query from URL
     const searchQuery = searchParams.get('search');
@@ -66,7 +80,7 @@ export default function PropertiesPage() {
       filtered = filtered.filter(p => p.type === selectedType);
     }
     if (bedrooms) {
-      filtered = filtered.filter(p => p.bedrooms === parseInt(bedrooms));
+      filtered = filtered.filter(p => p.bedrooms === Number.parseInt(bedrooms, 10));
     }
     if (selectedAmenities.length > 0) {
       filtered = filtered.filter(p =>
@@ -88,11 +102,17 @@ export default function PropertiesPage() {
 
   const allAmenities = Array.from(
     new Set(properties.flatMap(p => p.amenities))
-  ).sort();
+  ).sort((a, b) => a.localeCompare(b));
 
-  const allLocations = Array.from(new Set(properties.map(p => p.location))).sort();
-  const allCities = Array.from(new Set(properties.map(p => p.city))).sort();
-  const allTypes = Array.from(new Set(properties.map(p => p.type))).sort();
+  const allLocations = Array.from(new Set(properties.map(p => p.location))).sort((a, b) =>
+    a.localeCompare(b)
+  );
+  const allCities = Array.from(new Set(properties.map(p => p.city))).sort((a, b) =>
+    a.localeCompare(b)
+  );
+  const allTypes = Array.from(new Set(properties.map(p => p.type))).sort((a, b) =>
+    a.localeCompare(b)
+  );
 
   const resetFilters = () => {
     setSelectedLocation('');
@@ -133,10 +153,11 @@ export default function PropertiesPage() {
               <div className="space-y-6">
                 {/* Location Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="city-select" className="block text-sm font-medium text-gray-700 mb-2">
                     City
                   </label>
                   <select
+                    id="city-select"
                     value={selectedCity}
                     onChange={(e) => setSelectedCity(e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-3 py-2"
@@ -150,10 +171,11 @@ export default function PropertiesPage() {
 
                 {/* Area Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="location-select" className="block text-sm font-medium text-gray-700 mb-2">
                     Location
                   </label>
                   <select
+                    id="location-select"
                     value={selectedLocation}
                     onChange={(e) => setSelectedLocation(e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-3 py-2"
@@ -167,33 +189,53 @@ export default function PropertiesPage() {
 
                 {/* Price Range */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <p className="block text-sm font-medium text-gray-700 mb-2">
                     Price Range
-                  </label>
+                  </p>
                   <div className="space-y-2">
-                    <input
-                      type="number"
-                      placeholder="Min Price"
-                      value={priceRange.min || ''}
-                      onChange={(e) => setPriceRange({ ...priceRange, min: parseInt(e.target.value) || 0 })}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Max Price"
-                      value={priceRange.max === 50000000 ? '' : priceRange.max}
-                      onChange={(e) => setPriceRange({ ...priceRange, max: parseInt(e.target.value) || 50000000 })}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                    />
+                    <div>
+                      <label htmlFor="price-min" className="sr-only">
+                        Minimum Price
+                      </label>
+                      <input
+                        id="price-min"
+                        type="number"
+                        placeholder="Min Price"
+                        value={priceRange.min || ''}
+                        onChange={(e) =>
+                          setPriceRange({ ...priceRange, min: Number.parseInt(e.target.value, 10) || 0 })
+                        }
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="price-max" className="sr-only">
+                        Maximum Price
+                      </label>
+                      <input
+                        id="price-max"
+                        type="number"
+                        placeholder="Max Price"
+                        value={priceRange.max === 50000000 ? '' : priceRange.max}
+                        onChange={(e) =>
+                          setPriceRange({
+                            ...priceRange,
+                            max: Number.parseInt(e.target.value, 10) || 50000000,
+                          })
+                        }
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                      />
+                    </div>
                   </div>
                 </div>
 
                 {/* Property Type */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="property-type" className="block text-sm font-medium text-gray-700 mb-2">
                     Property Type
                   </label>
                   <select
+                    id="property-type"
                     value={selectedType}
                     onChange={(e) => setSelectedType(e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-3 py-2"
@@ -207,10 +249,11 @@ export default function PropertiesPage() {
 
                 {/* Bedrooms */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="bedrooms-select" className="block text-sm font-medium text-gray-700 mb-2">
                     Bedrooms
                   </label>
                   <select
+                    id="bedrooms-select"
                     value={bedrooms}
                     onChange={(e) => setBedrooms(e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-3 py-2"
@@ -226,27 +269,35 @@ export default function PropertiesPage() {
 
                 {/* Amenities */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <p className="block text-sm font-medium text-gray-700 mb-2">
                     Amenities
-                  </label>
+                  </p>
                   <div className="space-y-2 max-h-48 overflow-y-auto">
-                    {allAmenities.map(amenity => (
-                      <label key={amenity} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          checked={selectedAmenities.includes(amenity)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setSelectedAmenities([...selectedAmenities, amenity]);
-                            } else {
-                              setSelectedAmenities(selectedAmenities.filter(a => a !== amenity));
-                            }
-                          }}
-                          className="mr-2"
-                        />
-                        <span className="text-sm">{amenity}</span>
-                      </label>
-                    ))}
+                    {allAmenities.map(amenity => {
+                      const amenityId = `amenity-${amenity
+                        .toLowerCase()
+                        .replaceAll(/[^a-z0-9]+/g, '-')}`;
+                      return (
+                        <div key={amenity} className="flex items-center">
+                          <input
+                            id={amenityId}
+                            type="checkbox"
+                            checked={selectedAmenities.includes(amenity)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setSelectedAmenities([...selectedAmenities, amenity]);
+                              } else {
+                                setSelectedAmenities(selectedAmenities.filter(a => a !== amenity));
+                              }
+                            }}
+                            className="mr-2"
+                          />
+                          <label htmlFor={amenityId} className="text-sm">
+                            {amenity}
+                          </label>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -272,8 +323,11 @@ export default function PropertiesPage() {
               </button>
 
               <div className="flex items-center space-x-2">
-                <label className="text-sm font-medium">Sort by:</label>
+                <label htmlFor="sort-by" className="text-sm font-medium">
+                  Sort by:
+                </label>
                 <select
+                  id="sort-by"
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                   className="border border-gray-300 rounded-lg px-3 py-2"
