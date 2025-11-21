@@ -1,0 +1,32 @@
+[
+  {
+    "id": "enq-1",
+    "propertyId": "1",
+    "propertyTitle": "Luxury 3BHK Apartment in Downtown",
+    "name": "Rajesh Kumar",
+    "email": "rajesh.kumar@email.com",
+    "phone": "+91 98765 43210",
+    "message": "I'm interested in this property. Please provide more details about the payment plan.",
+    "status": "New",
+    "submittedAt": "2024-03-15T10:30:00Z",
+    "comments": []
+  },
+  {
+    "id": "enq-2",
+    "propertyId": "3",
+    "propertyTitle": "Premium 4BHK Penthouse",
+    "name": "Priya Sharma",
+    "email": "priya.sharma@email.com",
+    "phone": "+91 98765 43211",
+    "message": "Would like to schedule a visit this weekend.",
+    "status": "Contacted",
+    "submittedAt": "2024-03-14T14:20:00Z",
+    "comments": [
+      {
+        "text": "Customer prefers weekend visit",
+        "addedAt": "2024-03-14T15:00:00Z"
+      }
+    ]
+  }
+]
+

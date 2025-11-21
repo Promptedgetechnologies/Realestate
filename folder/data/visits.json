@@ -1,0 +1,29 @@
+[
+  {
+    "id": "visit-1",
+    "propertyId": "2",
+    "propertyTitle": "Modern 2BHK Villa with Garden",
+    "name": "Amit Patel",
+    "email": "amit.patel@email.com",
+    "phone": "+91 98765 43212",
+    "preferredDate": "2024-03-20",
+    "preferredTime": "10:00 AM",
+    "status": "Scheduled",
+    "submittedAt": "2024-03-15T09:15:00Z",
+    "notes": "Customer wants to see the garden area"
+  },
+  {
+    "id": "visit-2",
+    "propertyId": "1",
+    "propertyTitle": "Luxury 3BHK Apartment in Downtown",
+    "name": "Sneha Reddy",
+    "email": "sneha.reddy@email.com",
+    "phone": "+91 98765 43213",
+    "preferredDate": "2024-03-18",
+    "preferredTime": "2:00 PM",
+    "status": "Completed",
+    "submittedAt": "2024-03-12T11:30:00Z",
+    "notes": "Visit completed successfully"
+  }
+]
+

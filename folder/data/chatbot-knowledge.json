@@ -1,0 +1,42 @@
+{
+  "propertyTypes": {
+    "Apartment": "Multi-story residential units in a building, typically with shared amenities like gym, pool, and security.",
+    "Villa": "Independent houses with private gardens, offering more privacy and space.",
+    "Penthouse": "Luxury apartments on the top floor of a building, often with premium features and views.",
+    "Studio": "Compact single-room apartments ideal for individuals or couples.",
+    "House": "Independent residential buildings, perfect for families needing more space."
+  },
+  "amenities": {
+    "Swimming Pool": "Community or private pools for recreation and fitness.",
+    "Gym": "Fitness centers with modern equipment for residents.",
+    "Parking": "Dedicated parking spaces for vehicles.",
+    "Security": "24/7 security personnel and CCTV surveillance.",
+    "Power Backup": "Backup power supply for uninterrupted electricity.",
+    "Garden": "Landscaped green spaces for relaxation."
+  },
+  "priceRanges": {
+    "budget": "Properties under ₹50 lakhs - typically studios and 1BHK apartments",
+    "mid-range": "Properties between ₹50 lakhs to ₹1.5 crores - 2-3BHK apartments and smaller villas",
+    "premium": "Properties between ₹1.5 crores to ₹5 crores - 3-4BHK apartments and villas",
+    "luxury": "Properties above ₹5 crores - penthouses and large independent houses"
+  },
+  "locationInfo": {
+    "Downtown": "Prime commercial and residential areas with excellent connectivity, shopping, and entertainment options.",
+    "Suburban": "Peaceful residential neighborhoods away from city center, ideal for families.",
+    "Uptown": "Luxury residential areas with premium amenities and high-end properties.",
+    "Midtown": "Well-connected mid-range areas with good infrastructure and accessibility."
+  },
+  "emiInfo": {
+    "interestRate": 8.5,
+    "maxTenure": 30,
+    "minDownPayment": 20,
+    "explanation": "EMI (Equated Monthly Installment) is calculated based on loan amount, interest rate, and tenure. Typically, banks offer 80% loan-to-value ratio."
+  },
+  "commonQuestions": {
+    "payment": "We offer flexible payment plans including construction-linked, possession-linked, and down payment options. EMI options available with major banks.",
+    "documents": "Required documents include ID proof, address proof, income documents, and property-related papers. Our team will guide you through the process.",
+    "possession": "Possession timelines vary by project. Ready-to-move properties are available immediately, while under-construction properties have specific timelines.",
+    "legal": "All properties are legally verified with clear titles. We provide all necessary legal documents and certifications."
+  }
+}
+

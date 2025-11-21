@@ -1,0 +1,97 @@
+{
+  "cities": [
+    {
+      "name": "Mumbai",
+      "state": "Maharashtra",
+      "trending": true,
+      "avgPrice": 12000,
+      "priceUnit": "per sqft",
+      "growth": "+12%",
+      "properties": 45
+    },
+    {
+      "name": "Bangalore",
+      "state": "Karnataka",
+      "trending": true,
+      "avgPrice": 8500,
+      "priceUnit": "per sqft",
+      "growth": "+15%",
+      "properties": 38
+    },
+    {
+      "name": "Delhi",
+      "state": "Delhi",
+      "trending": true,
+      "avgPrice": 11000,
+      "priceUnit": "per sqft",
+      "growth": "+10%",
+      "properties": 52
+    },
+    {
+      "name": "Hyderabad",
+      "state": "Telangana",
+      "trending": false,
+      "avgPrice": 6500,
+      "priceUnit": "per sqft",
+      "growth": "+8%",
+      "properties": 28
+    },
+    {
+      "name": "Pune",
+      "state": "Maharashtra",
+      "trending": false,
+      "avgPrice": 7500,
+      "priceUnit": "per sqft",
+      "growth": "+9%",
+      "properties": 32
+    }
+  ],
+  "areas": [
+    {
+      "name": "Downtown",
+      "city": "Mumbai",
+      "trending": true,
+      "avgPrice": 15000,
+      "description": "Prime commercial and residential area"
+    },
+    {
+      "name": "Suburban",
+      "city": "Bangalore",
+      "trending": true,
+      "avgPrice": 9000,
+      "description": "Peaceful residential neighborhoods"
+    },
+    {
+      "name": "Uptown",
+      "city": "Delhi",
+      "trending": true,
+      "avgPrice": 13000,
+      "description": "Luxury residential area"
+    },
+    {
+      "name": "Midtown",
+      "city": "Mumbai",
+      "trending": false,
+      "avgPrice": 10000,
+      "description": "Well-connected mid-range area"
+    }
+  ],
+  "priceTrends": {
+    "Mumbai": {
+      "2023": 11000,
+      "2024": 12000,
+      "projected2025": 13200
+    },
+    "Bangalore": {
+      "2023": 7500,
+      "2024": 8500,
+      "projected2025": 9500
+    },
+    "Delhi": {
+      "2023": 10000,
+      "2024": 11000,
+      "projected2025": 12000
+    }
+  }
+}
+
