@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiPlay, FiPause, FiVolume2, FiMaximize } from 'react-icons/fi';
+import { FiPlay } from 'react-icons/fi';
 
 interface VideoItem {
   id: number;
@@ -42,7 +42,6 @@ const videos: VideoItem[] = [
 
 export default function VideoSection() {
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const handleVideoClick = (id: number) => {
     if (playingVideo === id) {
@@ -70,7 +69,7 @@ export default function VideoSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {videos.map((video, index) => (
             <motion.div
               key={video.id}
@@ -94,6 +93,7 @@ export default function VideoSection() {
                     <img
                       src={video.thumbnail}
                       alt={video.title}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
@@ -114,9 +114,9 @@ export default function VideoSection() {
                   </>
                 )}
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-gray-800">{video.title}</h3>
-                <p className="text-gray-600">{video.description}</p>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-800">{video.title}</h3>
+                <p className="text-gray-600 text-sm sm:text-base">{video.description}</p>
               </div>
             </motion.div>
           ))}

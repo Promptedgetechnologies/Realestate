@@ -5,11 +5,12 @@ import { Property, Enquiry, Visit } from '@/lib/data-loader';
 import { getProperties, getEnquiries, getVisits } from '@/lib/data-loader';
 import PropertyManagement from '@/components/admin/PropertyManagement';
 import LeadManagement from '@/components/admin/LeadManagement';
+import QualifiedLeads from '@/components/admin/QualifiedLeads';
 import AnalyticsDashboard from '@/components/admin/AnalyticsDashboard';
-import { FiHome, FiUsers, FiBarChart2 } from 'react-icons/fi';
+import { FiHome, FiUsers, FiBarChart2, FiTrendingUp } from 'react-icons/fi';
 
 export default function AdminPanel() {
-  const [activeTab, setActiveTab] = useState<'properties' | 'leads' | 'analytics'>('properties');
+  const [activeTab, setActiveTab] = useState<'properties' | 'leads' | 'qualified' | 'analytics'>('properties');
   const [properties, setProperties] = useState<Property[]>([]);
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [visits, setVisits] = useState<Visit[]>([]);
@@ -62,6 +63,17 @@ export default function AdminPanel() {
               <span>Lead Management</span>
             </button>
             <button
+              onClick={() => setActiveTab('qualified')}
+              className={`flex-1 px-6 py-4 font-semibold flex items-center justify-center space-x-2 ${
+                activeTab === 'qualified'
+                  ? 'border-b-2 border-primary-600 text-primary-600'
+                  : 'text-gray-600 hover:text-gray-800'
+              }`}
+            >
+              <FiTrendingUp />
+              <span>AI Qualified Leads</span>
+            </button>
+            <button
               onClick={() => setActiveTab('analytics')}
               className={`flex-1 px-6 py-4 font-semibold flex items-center justify-center space-x-2 ${
                 activeTab === 'analytics'
@@ -89,6 +101,9 @@ export default function AdminPanel() {
               visits={visits}
               onUpdate={loadData}
             />
+          )}
+          {activeTab === 'qualified' && (
+            <QualifiedLeads />
           )}
           {activeTab === 'analytics' && (
             <AnalyticsDashboard

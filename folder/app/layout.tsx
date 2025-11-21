@@ -7,14 +7,14 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Real Estate - Find Your Dream Home',
+  title: 'Serniq - Find Your Dream Home',
   description: 'Discover premium properties across India',
 }
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  readonly children: React.ReactNode
 }) {
   return (
     <html lang="en">

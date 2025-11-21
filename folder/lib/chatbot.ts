@@ -43,6 +43,9 @@ export const detectIntent = (message: string): string => {
   if (lowerMessage.includes('visit') || lowerMessage.includes('schedule') || lowerMessage.includes('see')) {
     return 'visit_request';
   }
+  if (lowerMessage.includes('verify') || lowerMessage.includes('verification') || lowerMessage.includes('call me') || lowerMessage.includes('ai call')) {
+    return 'verification_request';
+  }
   if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('help')) {
     return 'greeting';
   }
@@ -209,6 +212,18 @@ export const generateResponse = (
       return {
         response: "Great! I can help you schedule a site visit. Please fill out the form with your preferred date and time, and we'll get back to you shortly.",
         showVisitForm: true
+      };
+    
+    case 'verification_request':
+      return {
+        response: "Great! I can help you get verified as a real customer. Here's how it works:\n\n" +
+          "🤖 **AI Voice Verification Call**\n" +
+          "• I'll call you on your phone number\n" +
+          "• Ask a few quick verification questions (about 2-3 minutes)\n" +
+          "• Verify you're a genuine customer\n" +
+          "• Once verified, you'll get priority assistance from our sales team\n\n" +
+          "Click the purple phone icon (📞) in the header, or tell me your phone number to get started!\n\n" +
+          "Example: \"My number is +919876543210\" or \"Call me at 9876543210\""
       };
     
     default:

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FiMail, FiCheckCircle } from 'react-icons/fi';
+import LeadQualificationWidget from './LeadQualificationWidget';
 
 interface EnquiryFormProps {
   propertyId: string;
@@ -17,6 +18,9 @@ export default function EnquiryForm({ propertyId, propertyTitle }: EnquiryFormPr
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [enquiryId, setEnquiryId] = useState<string | null>(null);
+  const [showQualification, setShowQualification] = useState(false);
+  const [submittedLeadInfo, setSubmittedLeadInfo] = useState<{ name: string; phone: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,9 +40,13 @@ export default function EnquiryForm({ propertyId, propertyTitle }: EnquiryFormPr
       });
 
       if (response.ok) {
+        const enquiry = await response.json();
+        setEnquiryId(enquiry.id);
+        setSubmittedLeadInfo({ name: formData.name, phone: formData.phone });
         setIsSubmitted(true);
+        setShowQualification(true);
         setFormData({ name: '', email: '', phone: '', message: '' });
-        setTimeout(() => setIsSubmitted(false), 5000);
+        setTimeout(() => setIsSubmitted(false), 10000);
       }
     } catch (error) {
       console.error('Error submitting enquiry:', error);
@@ -49,13 +57,28 @@ export default function EnquiryForm({ propertyId, propertyTitle }: EnquiryFormPr
 
   if (isSubmitted) {
     return (
-      <div className="text-center py-8">
-        <FiCheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
-        <h3 className="text-xl font-semibold mb-2">Enquiry Submitted!</h3>
-        <p className="text-gray-600">
-          Thank you for your interest. We'll get back to you shortly.
-        </p>
-      </div>
+      <>
+        <div className="text-center py-8">
+          <FiCheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold mb-2">Enquiry Submitted!</h3>
+          <p className="text-gray-600 mb-4">
+            Thank you for your interest. Our AI assistant is qualifying your lead now.
+          </p>
+          <p className="text-sm text-gray-500">
+            You should receive a call within 30 seconds for a quick qualification.
+          </p>
+        </div>
+        {enquiryId && showQualification && submittedLeadInfo && (
+          <LeadQualificationWidget
+            enquiryId={enquiryId}
+            leadName={submittedLeadInfo.name}
+            leadPhone={submittedLeadInfo.phone}
+            onQualificationComplete={(status, score) => {
+              console.log(`Lead qualified as ${status} with score ${score}`);
+            }}
+          />
+        )}
+      </>
     );
   }
 

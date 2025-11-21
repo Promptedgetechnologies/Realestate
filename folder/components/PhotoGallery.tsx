@@ -128,14 +128,14 @@ export default function PhotoGallery() {
         </motion.div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-nowrap sm:flex-wrap justify-start sm:justify-center gap-3 sm:gap-4 mb-12 overflow-x-auto pb-2">
           {categories.map((category) => (
             <motion.button
               key={category}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              className={`px-5 sm:px-6 py-3 rounded-full font-semibold whitespace-nowrap transition-all duration-300 ${
                 selectedCategory === category
                   ? 'bg-primary-600 text-white shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -168,6 +168,7 @@ export default function PhotoGallery() {
                   <img
                     src={photo.image}
                     alt={photo.title}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
@@ -207,6 +208,7 @@ export default function PhotoGallery() {
                 <img
                   src={filteredPhotos[lightboxIndex].image}
                   alt={filteredPhotos[lightboxIndex].title}
+                  loading="lazy"
                   className="w-full h-full object-contain rounded-lg"
                 />
                 <button

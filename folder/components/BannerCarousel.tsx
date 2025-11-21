@@ -104,7 +104,7 @@ export default function BannerCarousel() {
   };
 
   return (
-    <div className="relative w-full h-[600px] md:h-[700px] overflow-hidden rounded-b-3xl">
+    <div className="relative w-full min-h-[420px] sm:h-[560px] lg:h-[700px] overflow-hidden rounded-b-3xl">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentIndex}
@@ -147,13 +147,13 @@ export default function BannerCarousel() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="max-w-2xl text-white"
+                className="max-w-3xl text-white text-center md:text-left space-y-4"
               >
                 <motion.p
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="text-primary-300 text-lg md:text-xl mb-2 font-semibold"
+                  className="text-primary-200 text-sm sm:text-lg font-semibold tracking-wide"
                 >
                   {banners[currentIndex].subtitle}
                 </motion.p>
@@ -161,7 +161,7 @@ export default function BannerCarousel() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight"
+                  className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight"
                 >
                   {banners[currentIndex].title}
                 </motion.h1>
@@ -169,7 +169,7 @@ export default function BannerCarousel() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
-                  className="text-xl md:text-2xl mb-8 text-gray-200"
+                  className="text-base sm:text-xl text-gray-200"
                 >
                   {banners[currentIndex].description}
                 </motion.p>
@@ -180,7 +180,7 @@ export default function BannerCarousel() {
                 >
                   <Link
                     href={banners[currentIndex].link}
-                    className="inline-block bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    className="inline-flex w-full justify-center md:w-auto bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
                     {banners[currentIndex].buttonText}
                   </Link>
@@ -194,14 +194,14 @@ export default function BannerCarousel() {
       {/* Navigation Arrows */}
       <button
         onClick={() => paginate(-1)}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110 w-12 h-12 items-center justify-center"
         aria-label="Previous slide"
       >
         <FiChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={() => paginate(1)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110 w-12 h-12 items-center justify-center"
         aria-label="Next slide"
       >
         <FiChevronRight className="w-6 h-6" />
@@ -224,8 +224,8 @@ export default function BannerCarousel() {
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 right-20 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl -z-0" />
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-0" />
+      <div className="absolute top-10 right-4 w-48 h-48 bg-primary-500/10 rounded-full blur-3xl -z-0 hidden md:block" />
+      <div className="absolute bottom-10 left-4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -z-0 hidden md:block" />
     </div>
   );
 }

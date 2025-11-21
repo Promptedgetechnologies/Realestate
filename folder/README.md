@@ -5,19 +5,31 @@ A complete Real Estate Web Application built with **Next.js 14**, featuring a cu
 ## 🚀 Features
 
 ### Customer View (Public Website)
-- ✅ **Homepage** with banners, property categories, featured properties, and trending locations
+- ✅ **Homepage** with animated banners, property categories, featured properties, trending locations, videos, and photo gallery
 - ✅ **Property Listing Page** with advanced filters (location, price, type, bedrooms, amenities)
 - ✅ **Property Details Page** with images, description, features, amenities, and nearby facilities
 - ✅ **EMI Calculator** for property financing
-- ✅ **Enquiry Form** to submit property inquiries
+- ✅ **Enquiry Form** to submit property inquiries (triggers AI Lead Qualification)
 - ✅ **Schedule Site Visit** form
 - ✅ **AI Chatbot** with property recommendations and multi-language support
+- ✅ **Fully Responsive** - Optimized for mobile, tablet, and desktop
 
 ### Business View (Admin Panel)
 - ✅ **Property Management** - Add, Edit, Delete properties
 - ✅ **Lead Management** - View enquiries and scheduled visits
+- ✅ **AI Qualified Leads** - View and manage AI-qualified leads (HOT/WARM/COLD)
 - ✅ **Analytics Dashboard** - Property stats, trending locations, most viewed properties
 - ✅ **CSV Export** for leads data
+- ✅ **Lead Qualification Stats** - Track qualification performance
+
+### AI Lead Qualification System 🚀
+- ✅ **Instant Qualification** - Automatically qualifies leads within 0-30 seconds
+- ✅ **Smart Scoring** - 0-100 score based on 7 key questions
+- ✅ **Lead Classification** - HOT (70+), WARM (40-69), COLD (<40)
+- ✅ **Notification System** - Email, WhatsApp, Slack, CRM ready
+- ✅ **Persistent Storage** - Saves all qualified leads
+- ✅ **Admin Dashboard** - View, filter, and export qualified leads
+- ✅ **Appointment Booking** - Automatic appointment scheduling
 
 ## 🏗️ Architecture
 
@@ -245,6 +257,14 @@ See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed deployment guide.
 ### Chatbot
 - `POST /api/chatbot` - Chatbot interaction
 
+### Lead Qualification
+- `POST /api/lead-qualification` - Qualify a lead
+- `GET /api/lead-qualification` - Get all qualified leads
+- `GET /api/lead-qualification?status=HOT` - Filter by status
+- `PUT /api/lead-qualification` - Update lead/appointment
+- `GET /api/lead-qualification/stats` - Get statistics
+- `POST /api/notifications/test` - Test notifications
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -256,15 +276,30 @@ See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed deployment guide.
 
 This project is open source and available under the MIT License.
 
+## 🎯 AI Lead Qualification
+
+The application includes a complete **AI Lead Qualification System** that:
+
+- ✅ Automatically qualifies leads within 0-30 seconds
+- ✅ Scores leads from 0-100 based on 7 smart questions
+- ✅ Classifies leads as HOT, WARM, or COLD
+- ✅ Sends notifications for HOT leads (Email, WhatsApp, Slack, CRM)
+- ✅ Stores all qualified leads persistently
+- ✅ Provides admin dashboard for managing qualified leads
+
+**See [docs/AI_LEAD_QUALIFICATION.md](docs/AI_LEAD_QUALIFICATION.md) for full documentation.**
+
+**See [docs/SETUP_AI_LEAD_QUALIFICATION.md](docs/SETUP_AI_LEAD_QUALIFICATION.md) for setup instructions.**
+
 ## 🎯 Future Enhancements
 
-- [ ] Add database for persistence
-- [ ] Implement authentication
-- [ ] Add real-time updates
+- [ ] Add database for persistence (currently using JSON files)
+- [ ] Implement authentication for admin panel
+- [ ] Add real-time updates via WebSockets
 - [ ] Integrate external LLM for chatbot
 - [ ] Add image upload functionality
 - [ ] Implement search with Elasticsearch
-- [ ] Add email notifications
+- [ ] Integrate actual phone calling (Twilio)
 - [ ] Mobile app version
 
 ## 📞 Support
