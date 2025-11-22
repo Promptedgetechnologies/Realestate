@@ -9,9 +9,9 @@ import VoiceCallWidget from './VoiceCallWidget';
 import { VoiceCallSession } from '@/lib/voice-call';
 
 // Contact Numbers (configure in .env.local)
-// Format: +919876543210 or 919876543210
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+919876543210';
-const PHONE_NUMBER = process.env.NEXT_PUBLIC_PHONE_NUMBER || '+919876543210';
+// Format: +916304071542 or 916304071542
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+916304071542';
+const PHONE_NUMBER = process.env.NEXT_PUBLIC_PHONE_NUMBER || '+916304071542';
 
 export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);

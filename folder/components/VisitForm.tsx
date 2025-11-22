@@ -113,7 +113,7 @@ export default function VisitForm({ propertyId, propertyTitle }: VisitFormProps)
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-600 focus:border-transparent"
-          placeholder="+91 98765 43210"
+          placeholder="+91 63040 71542"
         />
       </div>
 

@@ -41,8 +41,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Phone</h3>
-                  <p className="text-gray-600">+91 98765 43210</p>
-                  <p className="text-gray-600">+91 98765 43211</p>
+                  <p className="text-gray-600">+91 63040 71542</p>
+                  <p className="text-gray-600">+91 63040 71542</p>
                 </div>
               </div>
 
@@ -52,8 +52,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Email</h3>
-                  <p className="text-gray-600">info@estatehub.com</p>
-                  <p className="text-gray-600">support@estatehub.com</p>
+                  <p className="text-gray-600">info@serniqtechnologies.com</p>
+                  <p className="text-gray-600">support@serniqtechnologies.com</p>
                 </div>
               </div>
 
@@ -124,7 +124,7 @@ export default function ContactPage() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-600 focus:border-transparent"
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 63040 71542"
                   />
                 </div>
 

@@ -22,7 +22,7 @@ npm run dev
 5. Watch the call widget appear!
 
 ### Method 2: Type Your Phone Number
-1. In the chatbot, type: `"My number is +919876543210"` (use your real number)
+1. In the chatbot, type: `"My number is +916304071542"` (use your real number)
 2. The chatbot will detect the phone number
 3. It will suggest using AI verification
 4. Click the purple phone icon to start
@@ -66,7 +66,7 @@ fetch('/api/voice-call')
   .then(data => console.log('All Calls:', data))
 
 // Get specific call by phone number
-fetch('/api/voice-call?phoneNumber=+919876543210')
+fetch('/api/voice-call?phoneNumber=+916304071542')
   .then(r => r.json())
   .then(data => console.log('My Calls:', data))
 ```
@@ -83,13 +83,13 @@ fetch('/api/voice-call?phoneNumber=+919876543210')
 ### Test 1: Basic Call
 1. ✅ Open chatbot
 2. ✅ Click purple phone icon
-3. ✅ Enter phone: `+919876543210`
+3. ✅ Enter phone: `+916304071542`
 4. ✅ Watch call widget appear
 5. ✅ Wait for call to complete (~20 seconds)
 6. ✅ See verification result
 
 ### Test 2: Phone Number Detection
-1. ✅ Type: `"My phone is 9876543210"`
+1. ✅ Type: `"My phone is 6304071542"`
 2. ✅ Chatbot detects number
 3. ✅ Suggests AI verification
 4. ✅ Click AI call button

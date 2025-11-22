@@ -223,7 +223,7 @@ export const generateResponse = (
           "• Verify you're a genuine customer\n" +
           "• Once verified, you'll get priority assistance from our sales team\n\n" +
           "Click the purple phone icon (📞) in the header, or tell me your phone number to get started!\n\n" +
-          "Example: \"My number is +919876543210\" or \"Call me at 9876543210\""
+          "Example: \"My number is +916304071542\" or \"Call me at 6304071542\""
       };
     
     default:

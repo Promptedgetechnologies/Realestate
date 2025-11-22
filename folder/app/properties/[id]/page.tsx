@@ -267,7 +267,7 @@ export default function PropertyDetailsPage() {
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center space-x-2">
                     <FiPhone className="text-primary-600" />
-                    <span>+91 98765 43210</span>
+                    <span>+91 63040 71542</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <FiMail className="text-primary-600" />
